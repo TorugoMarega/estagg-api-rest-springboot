@@ -15,6 +15,9 @@ public class EstaggApiApplication {
 		return "API ONLINE!";
 	}
 
-	public static void main(String[] args) {SpringApplication.run(EstaggApiApplication.class, args);}
+	public static void main(String[] args) {
+		SpringApplication.run(EstaggApiApplication.class, args);
+		System.out.println("API ONLINE!");
+	}
 
 }

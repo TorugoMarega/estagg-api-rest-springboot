@@ -12,6 +12,7 @@ public class Pessoa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+    @Column(nullable = false, length = 11, unique = true)
     private String cpf;
     @ManyToOne
     @JoinColumn(name = "instituicao_id")
@@ -20,11 +21,14 @@ public class Pessoa {
     @JoinColumn(name = "curso_id")
     private Curso curso;
     private Date datanasc;
+    @Column(unique = true)
     private String email;
     private String senha_hash;
     @ManyToOne
     @JoinColumn(name = "cargo_id")
     private Cargo cargo;
+
+    public Pessoa(){ }
 
     public Cargo getCargo() {
         return cargo;
@@ -33,8 +37,6 @@ public class Pessoa {
     public void setCargo(Cargo cargo) {
         this.cargo = cargo;
     }
-
-    public Pessoa(){ }
 
     public Long getId() {
         return id;
