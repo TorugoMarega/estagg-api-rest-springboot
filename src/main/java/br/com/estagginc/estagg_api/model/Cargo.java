@@ -1,25 +1,28 @@
 package br.com.estagginc.estagg_api.model;
 
-import org.hibernate.annotations.SQLDelete;
-
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "cargo")
-@SQLDelete(sql = "UPDATE user SET deleted=true WHERE id=?")
+//@SQLDelete(sql = "UPDATE user SET deleted=true WHERE id=?")
 public class Cargo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String nome;
-    @OneToMany
-    private List<Pessoa> pessoas;
+
+
+    @Column(nullable = false)
     private Boolean deleted = Boolean.FALSE;
-    private Cargo(){}
+    public Cargo(){}
+
+    public Cargo(Long id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
 
     public Long getId() {
         return id;
@@ -35,14 +38,6 @@ public class Cargo {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public List<Pessoa> getPessoas() {
-        return pessoas;
-    }
-
-    public void setPessoas(List<Pessoa> pessoas) {
-        this.pessoas = pessoas;
     }
 
     public Boolean getDeleted() {

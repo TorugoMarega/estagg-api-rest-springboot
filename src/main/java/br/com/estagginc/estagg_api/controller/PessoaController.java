@@ -1,31 +1,33 @@
 package br.com.estagginc.estagg_api.controller;
 
+import br.com.estagginc.estagg_api.dto.CargoDTO;
+import br.com.estagginc.estagg_api.dto.PessoaDTO;
 import br.com.estagginc.estagg_api.model.Pessoa;
-import br.com.estagginc.estagg_api.repository.PessoaRepository;
+import br.com.estagginc.estagg_api.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController()
 @RequestMapping(value = "/api/pessoa")
 public class PessoaController {
     @Autowired
-    private PessoaRepository pessoaRepository;
+    private PessoaService service;
+
+    @GetMapping
+    public  List<PessoaDTO> findAll(){
+        return service.findAll();
+    }
+    @GetMapping("admin")
+    public List<Pessoa> findAllAdmin(){
+        return service.findAllAdmin();
+    }
 
     @PostMapping
-    public Pessoa createPerson(@RequestBody Pessoa newPessoa){
-        return pessoaRepository.save(newPessoa);
-    }
-
-    @GetMapping()
-    public List<Pessoa> findAll(){
-        return pessoaRepository.findAll();
-    }
-
-    @GetMapping("/{id}")
-    public Optional<Pessoa> findById(@PathVariable Long id){
-        return pessoaRepository.findById(id);
+    public PessoaDTO create(@RequestBody PessoaDTO newPessoa) {
+        return service.save(newPessoa);
     }
 }

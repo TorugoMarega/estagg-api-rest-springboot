@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface CargoRepository extends JpaRepository<Cargo, Long> {
     List<Cargo> findByNome(String nome) ;
+    List<Cargo> findByDeletedTrue();
+    List<Cargo> findByDeletedFalse();
 }
