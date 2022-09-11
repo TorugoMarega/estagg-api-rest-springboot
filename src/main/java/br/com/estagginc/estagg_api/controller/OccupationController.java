@@ -1,6 +1,8 @@
     package br.com.estagginc.estagg_api.controller;
 
     import br.com.estagginc.estagg_api.dto.OccupationDTO;
+    import br.com.estagginc.estagg_api.dto.PersonDTO;
+    import br.com.estagginc.estagg_api.exception.ResourceNotFoundException;
     import br.com.estagginc.estagg_api.model.Occupation;
     import br.com.estagginc.estagg_api.service.OccupationService;
     import org.modelmapper.ModelMapper;
@@ -31,8 +33,11 @@
     }
 
         @GetMapping("{id}")
-        public ResponseEntity<OccupationDTO> findById(@PathVariable(value = "id") Long id){
-            return new ResponseEntity<>(toOccupationDTO(service.findById(id)), HttpStatus.OK);
+        public OccupationDTO findById(@PathVariable(value = "id") Long id){
+            return toOccupationDTO(service.findById(id)
+                    .orElseThrow(() -> new ResourceNotFoundException(
+                            "Occupation not found with id: " + id)
+                    ));
         }
         @PostMapping
         public OccupationDTO create(@RequestBody OccupationDTO occupationDTO){
@@ -40,16 +45,17 @@
         }
 
         @GetMapping("search")
-        public List<OccupationDTO> findByName(@RequestParam String name){
-            return service.findByName(name)
+        public List<OccupationDTO> findByNameContaining(@RequestParam String name){
+            return service.findByNameContaining(name)
                     .stream()
                     .map(this::toOccupationDTO)
                     .collect(Collectors.toList());
         }
 
+
         @PutMapping("/{id}")
         public OccupationDTO update(@PathVariable Long id,@RequestBody Occupation occupation){
-            return toOccupationDTO(service.update(id, occupation));
+            return toOccupationDTO(service.update(id, occupation).get());
         }
 
         @DeleteMapping("/{id}")
@@ -65,7 +71,10 @@
 
         @GetMapping("entity/{id}")
         public Occupation findEntityById(@PathVariable(value = "id") Long id){
-            return service.findById(id);
+            return service.findById(id)
+                    .orElseThrow(() -> new ResourceNotFoundException(
+                            "Occupation not found with id: " + id)
+                    );
         }
 
         private OccupationDTO toOccupationDTO(Occupation occupation){

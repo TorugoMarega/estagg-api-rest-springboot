@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OccupationService {
@@ -26,18 +27,20 @@ public class OccupationService {
         return repository.save(occupation);
     }
 
-    public Occupation findById(Long id){
-        return  repository.findById(id).get();
+    public Optional<Occupation> findById(Long id){
+        return  repository.findById(id);
     }
 
-    public List<Occupation> findByName(String name){
-        return repository.findByName(name);
+    public List<Occupation> findByNameContaining(String name){
+        return repository.findByNameContaining(name);
     }
 
-    public Occupation update(Long id,Occupation occupation){
+    public Optional<Occupation> update(Long id, Occupation occupation){
        Occupation updateOccupation = repository.findById(id).get();
-        BeanUtils.copyProperties(occupation, updateOccupation);
-       return repository.save(updateOccupation);
+       Occupation auxOccupation = updateOccupation;
+       BeanUtils.copyProperties(occupation, updateOccupation);
+       repository.save(updateOccupation);
+       return Optional.of(auxOccupation);
     }
 
     public Occupation delete(Long id){
