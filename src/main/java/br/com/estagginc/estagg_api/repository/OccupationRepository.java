@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface OccupationRepository extends CrudRepository<Occupation, Long> {
     List<Occupation> findByDeletedFalse();
+
     List<Occupation> findByNameContaining(String name);
 }

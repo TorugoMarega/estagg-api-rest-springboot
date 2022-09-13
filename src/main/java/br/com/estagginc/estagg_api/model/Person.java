@@ -21,7 +21,8 @@ public class Person implements Serializable {
     @JoinColumn(name = "occupation_id")
     private Occupation occupation;
 
-    public Person(){}
+    public Person() {
+    }
 
     public Person(Long id, String name, Boolean deleted, Occupation occupation) {
         this.id = id;
