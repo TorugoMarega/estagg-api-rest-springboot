@@ -14,9 +14,9 @@ public class PersonService {
     @Autowired
     private PersonRepository repository;
 
-    public List<Person> findAllDeletedFalse() {
+/*     public List<Person> findAllDeletedFalse() {
         return (List<Person>) repository.findByDeletedFalse();
-    }
+    } */
 
     public List<Person> findAll() {
         return (List<Person>) repository.findAll();
@@ -45,13 +45,13 @@ public class PersonService {
         return repository.findById(id);
     }
 
-    public List<Person> findByNameContaining(String name) {
+/*     public List<Person> findByNameContaining(String name) {
         return repository.findByNameContaining(name);
     }
 
     public List<Person> findByOccupationNameContaining(String occupation_name){
         return repository.findByOccupationNameContaining(occupation_name);
-    }
+    } */
     //-----------------------------QUERY RETURN BOOLEAN-------------------------------------
     public Boolean existsById(Long id){
         return repository.existsById(id);

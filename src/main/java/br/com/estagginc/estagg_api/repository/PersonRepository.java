@@ -10,8 +10,8 @@ import java.util.List;
 
 @Repository
 public interface PersonRepository extends CrudRepository<Person, Long> {
-    List<Person> findByDeletedFalse();
+/*     List<Person> findByDeletedFalse();
 
     List<Person> findByNameContaining(String name);
-    List<Person> findByOccupationNameContaining(String occupation_name);
+    List<Person> findByOccupationNameContaining(String occupation_name); */
 }

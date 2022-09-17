@@ -26,20 +26,20 @@ public class PersonController {
 
 
     //-----------------------------CRUD-----------------------------------------------
-    @GetMapping
+/*     @GetMapping
     public ResponseEntity<List<PersonDTO>> findAllDeletedFalse() {
         return new ResponseEntity<>(
                 service.findAllDeletedFalse()
                         .stream()
                         .map(this::toPersonDTO)
                         .collect(Collectors.toList()), HttpStatus.OK);
-    }
+    } */
     @PostMapping
     public ResponseEntity<?> create(@RequestBody Person person){
         this.service.create(person);
         ResponseEntity<?> responseEntity;
         String description = "uri:/api/person/"+person.getId();
-        Message message = new Message(new Date(), "Person "+ person.getName()+" created!!!", description);
+        Message message = new Message(new Date(), "Person "+ person.getFirst_name()+" created!!!", description);
         if(service.existsById(person.getId())){
             responseEntity = new ResponseEntity<>(message, HttpStatus.CREATED);
         }else{
@@ -65,7 +65,7 @@ public class PersonController {
                 "Person not found with id: " + id)
         ));
     }
-    @GetMapping(value = "search", params = "name")
+/*     @GetMapping(value = "search", params = "name")
     public List<PersonDTO> findByNameContaining(@RequestParam String name) {
         return service.findByNameContaining(name)
                 .stream()
@@ -79,7 +79,7 @@ public class PersonController {
                 .stream()
                 .map(this::toPersonDTO)
                 .collect(Collectors.toList());
-    }
+    } */
     //---------------------------------ENTITY---------------------------------------------
     @GetMapping("entity")
     public List<Person> findAllPersonData() {

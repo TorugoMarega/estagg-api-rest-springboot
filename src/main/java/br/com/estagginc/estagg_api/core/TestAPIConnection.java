@@ -7,9 +7,10 @@ public class TestAPIConnection {
     private String message;
     private String remoteAddress;
 
-    public TestAPIConnection(Date timestamp, String message, String remoteAddress) {
+    public TestAPIConnection(String remoteAddress) {
+        Date timestamp = new Date();
         this.timestamp = timestamp;
-        this.message = message;
+        this.message = "CONEXÃO ESTABELECIDA!!!";
         this.remoteAddress = remoteAddress;
     }
 
