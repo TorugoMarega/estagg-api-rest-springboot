@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/person")
@@ -92,6 +91,16 @@ public class PersonController {
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Person not found with id: " + id)
                 );
+    }
+
+    @DeleteMapping("entity/{id}")
+    public Person deleteEntity(@PathVariable Long id) {
+        return service.delete(id);
+    }
+
+    @PutMapping("entity/{id}")
+    public Person activateEntity(@PathVariable Long id) {
+        return service.activate(id);
     }
 
     //---------------------------------CONVERSION---------------------------------------------

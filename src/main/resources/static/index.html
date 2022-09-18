@@ -9,10 +9,10 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-  <link rel="stylesheet" href="/css/styles.css">
-  <link rel="stylesheet" href="/css/reset.css">
-  <link rel="stylesheet" href="/css/video.css">
-  <link rel="shortcut icon" href="/img/icon.png" type="image/x-icon">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/video.css">
+  <link rel="shortcut icon" href="img/icon.png" type="image/x-icon">
   <title>Home | Estagg</title>
 </head>
 
@@ -21,25 +21,25 @@
   <div class="container-fluid cabecalho border-bottom">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">
       <a href="#" class="d-flex align-items-center col-md-3 mb-2 mb-md-0  text-decoration-none">
-        <img src="/img/logo_horizontal_0.75.png" width="300" alt="">
+        <img src="img/logo_horizontal_0.75.png" width="300" alt="">
       </a>
 
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="Frontend/vagas.html" class="nav-link px-4 text-white">Vagas</a></li>
-        <li><a href="Frontend/alunos.html" class="nav-link px-4 text-white">Alunos</a></li>
-        <li><a href="Frontend/empresas.html" class="nav-link px-4 text-white">Empresas</a></li>
+        <li><a th:href="/vagas" href="vagas" class="nav-link px-4 text-white">Vagas</a></li>
+        <li><a th:href="@{/alunos}" href="alunos" class="nav-link px-4 text-white">Alunos</a></li>
+        <li><a href="empresas" class="nav-link px-4 text-white">Empresas</a></li>
       </ul>
 
       <div id="btnsLoginCadastro" class="col-md-3 text-end">
-        <a href="Frontend/login.html" type="button" class="btn btn-outline-light me-2">Login</a>
-        <a href="Frontend/cadastro.html" type="button" class="btn btn-outline-light">Cadastro</a>
+        <a href="login" type="button" class="btn btn-outline-light me-2">Login</a>
+        <a href="cadastro" type="button" class="btn btn-outline-light">Cadastro</a>
       </div>
     </header>
   </div>
   <!-- -------------------------------------------------------------MAIN----------------------------------------------------------- -->
   <main>
     <section class="video-container">
-      <video src="/videos/business_video.mp4" autoplay loop playsinline muted></video>
+      <video src="videos/business_video.mp4" autoplay loop playsinline muted></video>
 
       <div class="callout">
         <h1>Junte-se a nós nessa jornada</h1>

@@ -18,23 +18,31 @@ public class Person implements Serializable {
 
     private String cpf;
 
+    private Boolean deleted = false;
 
     @ManyToOne
     @JoinColumn(name = "occupation_id")
     private Occupation occupation;
 
+    @ManyToOne
+    @JoinColumn(name="course_id")
+    private Course course;
 
-    private Boolean deleted = false;
+
+
+
+
     public Person() {
     }
 
-    public Person(Long id, String first_name, String last_name, String cpf, Occupation occupation, Boolean deleted) {
+    public Person(Long id, String first_name, String last_name, String cpf, Occupation occupation, Course course, Boolean deleted) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.cpf = cpf;
-        this.occupation = occupation;
         this.deleted = deleted;
+        this.occupation = occupation;
+        this.course = course;
     }
 
     public Long getId() {
@@ -68,7 +76,13 @@ public class Person implements Serializable {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+    public Boolean getDeleted() {
+        return deleted;
+    }
 
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
     public Occupation getOccupation() {
         return occupation;
     }
@@ -77,24 +91,13 @@ public class Person implements Serializable {
         this.occupation = occupation;
     }
 
-    public Boolean getDeleted() {
-        return deleted;
+    public Course getCourse() {
+        return course;
     }
 
-    public void setDeleted(Boolean deleted) {
-        this.deleted = deleted;
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return Objects.equals(id, person.id) && Objects.equals(first_name, person.first_name) && Objects.equals(last_name, person.last_name) && Objects.equals(cpf, person.cpf) && Objects.equals(occupation, person.occupation) && Objects.equals(deleted, person.deleted);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, first_name, last_name, cpf, occupation, deleted);
-    }
 }

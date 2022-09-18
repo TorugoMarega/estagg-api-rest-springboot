@@ -14,9 +14,9 @@ public class PersonService {
     @Autowired
     private PersonRepository repository;
 
-/*     public List<Person> findAllDeletedFalse() {
+     public List<Person> findAllDeletedFalse() {
         return (List<Person>) repository.findByDeletedFalse();
-    } */
+    }
 
     public List<Person> findAll() {
         return (List<Person>) repository.findAll();
@@ -36,9 +36,13 @@ public class PersonService {
     public Person delete(Long id) {
         Person deletedPerson = repository.findById(id).get();
         deletedPerson.setDeleted(true);
-        return deletedPerson;
+        return this.repository.save(deletedPerson);
     }
-
+    public Person activate(Long id) {
+        Person deletedPerson = repository.findById(id).get();
+        deletedPerson.setDeleted(false);
+        return this.repository.save(deletedPerson);
+    }
     //-----------------------------QUERY WITH FILTERS-------------------------------------
 
     public Optional<Person> findById(Long id) {

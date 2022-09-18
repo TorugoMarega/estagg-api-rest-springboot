@@ -2,7 +2,6 @@ package br.com.estagginc.estagg_api.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,21 +13,18 @@ public class Course implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String university;
 
-    @OneToMany(
-            mappedBy = "university",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<UniversityCourse> courses = new ArrayList<>();
+//    @OneToMany(mappedBy = "course")
+//    List<Person> people;
 
     public Course() {
     }
 
-    public Course(Long id, String name, List<UniversityCourse> courses) {
+    public Course(Long id, String name, String university) {
         this.id = id;
         this.name = name;
-        this.courses = courses;
+        this.university = university;
     }
 
     public Long getId() {
@@ -47,16 +43,12 @@ public class Course implements Serializable {
         this.name = name;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Course course = (Course) o;
-        return Objects.equals(id, course.id) && Objects.equals(name, course.name) && Objects.equals(courses, course.courses);
+    public String getUniversity() {
+        return university;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, courses);
+    public void setUniversity(String university) {
+        this.university = university;
     }
+
 }

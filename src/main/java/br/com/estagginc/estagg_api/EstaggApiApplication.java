@@ -1,6 +1,7 @@
 package br.com.estagginc.estagg_api;
 
 import br.com.estagginc.estagg_api.core.TestAPIConnection;
+import br.com.estagginc.estagg_api.view.StringFormatter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
@@ -11,15 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.ParseException;
 
 @SpringBootApplication
 @Controller
 @RequestMapping("/")
 public class EstaggApiApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         SpringApplication.run(EstaggApiApplication.class, args);
-        System.out.println("CONEXÃO ESTABELECIDA!!!");
+        System.out.println("CONEXAO ESTABELECIDA!!!\n\n");
     }
 
     @GetMapping("/api")
