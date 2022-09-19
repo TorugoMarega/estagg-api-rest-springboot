@@ -31,8 +31,4 @@ public class EstaggApiApplication {
                 HttpStatus.OK);
     }
 
-    @GetMapping("index")
-    public String index() {
-        return "index";
-    }
 }
